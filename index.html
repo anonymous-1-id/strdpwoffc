@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>@_DPW OFFC STORE</title>
+  <link rel="icon" href="https://files.catbox.moe/frvb8y.png" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff8f1;
+    }
+
+    header {
+      background-color: #e7d6c4;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    header img {
+      width: 60px;
+    }
+
+    header h1 {
+      font-size: 1.6rem;
+      color: #5e4520;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+
+    .product-box {
+      background: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+
+    .product-box img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+
+    .product-name {
+      margin-top: 10px;
+      font-weight: 600;
+      color: #5e4520;
+    }
+
+    .order-btn {
+      margin-top: 10px;
+      padding: 8px 15px;
+      background-color: #5e4520;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Floating Order Box */
+    .order-form {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 20px;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      z-index: 999;
+    }
+
+    .order-form input, .order-form select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .order-form h3 {
+      margin-top: 0;
+      color: #5e4520;
+    }
+
+    .order-form .close-btn {
+      float: right;
+      font-size: 1.2em;
+      cursor: pointer;
+      color: #555;
+    }
+
+    .order-form button {
+      width: 100%;
+      background-color: #5e4520;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="https://files.catbox.moe/frvb8y.png" alt="Logo" />
+  <h1>@_DPW OFFC STORE</h1>
+</header>
+
+<div class="container">
+  <!-- Produk 1 -->
+  <div class="product-box">
+    <img src="https://files.catbox.moe/bu5xbq.jpg" alt="capcut">
+    <div class="product-name">Capcut</div>
+    <button class="order-btn" onclick="openOrderForm('capcut')">Order</button>
+  </div>
+
+  <div class="product-box">
+    <img src="https://files.catbox.moe/am.jpg" alt="am">
+    <div class="product-name">Alight Motion </div>
+    <button class="order-btn" onclick="openOrderForm('am')">Order</button>
+  </div>
+
+  <div class="product-box">
+    <img src="https://files.catbox.moe/canva.jpg" alt="canva">
+    <div class="product-name">Capcut Pro</div>
+    <button class="order-btn" onclick="openOrderForm('canva')">Order</button>
+  </div>
+
+  <div class="product-box">
+    <img src="https://files.catbox.moe/netflix.jpg" alt="netflix ">
+    <div class="product-name">Capcut Pro</div>
+    <button class="order-btn" onclick="openOrderForm('netflix')">Order</button>
+  </div>
+
+  <div class="product-box">
+    <img src="https://files.catbox.moe/bu5xbq.jpg" alt="Capcut Pro">
+    <div class="product-name">Capcut Pro</div>
+    <button class="order-btn" onclick="openOrderForm('capcut')">Order</button>
+  </div>
+
+  <div class="product-box">
+    <img src="https://files.catbox.moe/bu5xbq.jpg" alt="Capcut Pro">
+    <div class="product-name">Capcut Pro</div>
+    <button class="order-btn" onclick="openOrderForm('capcut')">Order</button>
+  </div>
+  <!-- Produk Lain Bisa Ditambah di sini -->
+</div>
+
+<!-- FORM Capcut -->
+<div class="order-form" id="form-capcut">
+  <span class="close-btn" onclick="closeForm('capcut')">&times;</span>
+  <h3>Order Capcut Pro</h3>
+  <input type="text" id="number-capcut" placeholder="Nomor Customer (628xxx)" />
+  <select id="type-capcut">
+    <option disabled selected>Pilih Jenis Produk</option>
+    <option value="1 Bulan|20000">1 Bulan - 20.000</option>
+    <option value="6 Bulan|50000">6 Bulan - 50.000</option>
+    <option value="1 Tahun|75000">1 Tahun - 75.000</option>
+  </select>
+  <button onclick="submitOrder('capcut')">Kirim via WhatsApp</button>
+</div>
+
+<script>
+  function openOrderForm(product) {
+    document.getElementById(`form-${product}`).style.display = 'block';
+  }
+
+  function closeForm(product) {
+    document.getElementById(`form-${product}`).style.display = 'none';
+  }
+
+  function submitOrder(product) {
+    const number = document.getElementById(`number-${product}`).value.trim();
+    const typeValue = document.getElementById(`type-${product}`).value;
+
+    if (!number || !typeValue) {
+      alert("Mohon lengkapi semua data.");
+      return;
+    }
+
+    const [jenis, harga] = typeValue.split("|");
+    const message = `order 62${number}|Capcut ${jenis.trim()}|${harga.trim()}`;
+    const waUrl = `https://wa.me/6285168841110?text=${encodeURIComponent(message)}`;
+    window.open(waUrl, '_blank');
+  }
+</script>
+
+
+</body>
+</html>
